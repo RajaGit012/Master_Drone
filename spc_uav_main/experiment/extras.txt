@@ -1,0 +1,14 @@
+#!nsh
+
+# For info, see:
+# - https://github.com/mavlink/mavros/issues/13
+# - https://github.com/PX4/Devguide/issues/216 (which streams should be available)
+# - http://mavlink.org/messages/common
+# mavlink start -b 921600 -d /dev/ttyACM0 -m custom -x
+sleep 30
+mavlink stream -d /dev/ttyACM0 -s HIGHRES_IMU -r 200
+#mavlink stream -d /dev/ttyACM0 -s ATTITUDE_QUATERNION -r 200
+#mavlink stream -d /dev/ttyACM0 -s ATTITUDE -r 200
+#mavlink stream -d /dev/ttyACM0 -s SCALED_IMU -r 200
+#mavlink stream -d /dev/ttyACM0 -s RAW_IMU -r 200
+#mavlink stream -d /dev/ttyACM0 -s LOCAL_POSITION_NED -r 200

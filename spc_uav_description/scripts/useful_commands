@@ -1,0 +1,5 @@
+
+# To convert a xacro file to urdf and then to sdf
+rosrun xacro xacro --inorder name1.urdf.xacro > name2.urdf
+
+gz sdf -p name2.urdf > name3.sdf

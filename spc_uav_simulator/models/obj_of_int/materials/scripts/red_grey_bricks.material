@@ -1,0 +1,20 @@
+material obj_of_int/red_grey_bricks
+//http://texturelib.com/texture/?path=/Textures/brick/modern/brick_modern_0123/concrete_clean_0015
+//free for any use in products
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        //has to be place following the folder structure
+        //otherwise relative paths should be also possible
+        texture red_grey_bricks.jpg
+
+        //scaling to repeat the texture
+        scale 1.0 1.0
+      }
+    }
+  }
+}

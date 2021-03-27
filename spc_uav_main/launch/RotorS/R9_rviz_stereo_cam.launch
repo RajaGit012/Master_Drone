@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+
+    <!--***************** Show in Rviz **************-->
+    <node name="rviz" pkg="rviz" type="rviz" args=" -d $(find spc_uav_description)/config/config_file_s_cam_m_pointc.rviz"/>
+
+</launch>

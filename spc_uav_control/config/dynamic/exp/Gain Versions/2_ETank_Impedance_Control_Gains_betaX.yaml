@@ -1,0 +1,40 @@
+!!python/object/new:dynamic_reconfigure.encoding.Config
+dictitems:
+  mass: 1.7
+  J_xx: 0.05
+  J_yy: 0.05
+  J_zz: 0.094
+  K_v_x: 8.0
+  K_v_y: 8.0
+  K_v_z: 8.0
+  K_w_x: 0.0
+  K_w_y: 0.0
+  K_w_z: 0.0
+  K_w_x_px4: 0.3
+  K_w_y_px4: 0.17
+  K_w_z_px4: 0.08
+  c_KP_r_xx: 0.8
+  c_KP_r_yy: 0.8
+  c_KP_r_zz: 0.5
+  c_KP_t_xx: 10
+  c_KP_t_yy: 10
+  c_KP_t_zz: 10 
+  
+  K0_obs_t: 4.0
+  K0_obs_r: 2.5
+  
+  Kp_w_fx: 0.0
+  Kp_w_fy: -0.9
+  Kp_w_fz: -0.9
+  Kp_w_tx: -0.9
+  Kp_w_ty: -0.9
+  Kp_w_tz: -0.9
+
+  
+  T1_min: 5
+  T1_max: 500
+
+  
+state: []
+
+# This one is used for rejecting disturbances in desired axes

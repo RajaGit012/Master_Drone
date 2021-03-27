@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>spc_uav_main</name>
+  <version>0.0.0</version>
+  <description>The spc_uav_main package includes all main launch files of the spc_uav_systems</description>
+
+  <maintainer email="ramy@todo.todo">ramy</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <export>
+  </export>
+  
+</package>

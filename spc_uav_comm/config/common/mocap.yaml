@@ -1,0 +1,44 @@
+#
+# Definition of all trackable objects
+# Identifier corresponds to Trackable ID set in Tracking Tools
+#
+rigid_bodies:
+    '1':
+        pose: belle/pose
+        child_frame_id: belle
+        parent_frame_id: world
+    '2':
+        pose: teemo/pose
+        child_frame_id: teemo
+        parent_frame_id: world
+    '3':
+        pose: kenny/pose
+        child_frame_id: kenny
+        parent_frame_id: world
+    '4':
+        pose: coyote/pose
+        child_frame_id: coyote
+        parent_frame_id: world
+    '5':
+        pose: taz/pose
+        child_frame_id: taz
+        parent_frame_id: world  
+    '6':
+        pose: alpha/pose
+        child_frame_id: alpha/base_link
+        parent_frame_id: world     
+    '7':
+        pose: beta/pose
+        child_frame_id: beta/base_link
+        parent_frame_id: world  
+    '8':
+        pose: betaX/pose
+        child_frame_id: betaX/base_link
+        parent_frame_id: world  
+    '9':
+        pose: gamma/pose
+        child_frame_id: gamma/base_link
+        parent_frame_id: world  
+optitrack_config:
+        multicast_address: 224.0.0.2
+        interface_name: wlx00c0ca84805f

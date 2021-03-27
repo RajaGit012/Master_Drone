@@ -1,0 +1,20 @@
+material obj_of_int/clean_concrete
+//http://texturelib.com/texture/?path=/Textures/concrete/clean/concrete_clean_0015
+//free for any use in products
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        //has to be place following the folder structure
+        //otherwise relative paths should be also possible
+        texture clean_concrete.jpg
+
+        //scaling to repeat the texture
+        scale 2.0 2.0
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="uav_type" default="hexacopter"/>
+    <arg name="flightMap" default="ramlab"/>
+    <arg name="LocalPosChildFrameId" default="base_link"/>   
+    
+    <node pkg="spc_uav_comm" type="simulation_omni_gui.py" name="graph_user_interface" output="screen">
+	    <param name="uav_type" value="$(arg uav_type)"/>
+	    <param name="uav_size" value="90"/> 
+	    <param name="flightMap" value="$(arg flightMap)"/>  
+	    <param name="LocalPosFrameId" value="world"/>
+	    <param name="LocalPosChildFrameId" value="$(arg LocalPosChildFrameId)"/>
+	    <param name="SetpointFrameId" value="world"/>
+	    <param name="SetpointChildFrameId" value="setpoint"/>
+	</node>
+	
+	
+</launch>
+

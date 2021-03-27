@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<robot name="beta" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find spc_uav_description)/urdf/component_snippets_mod.xacro" />
+  
+    <!-- Included URDF Files -->
+  <xacro:include filename="$(find spc_uav_description)/urdf/multirotor_base_mod.xacro" />
+  
+  <!-- Instantiate iris "mechanics" -->
+  <xacro:include filename="$(find spc_uav_description)/urdf/beta.xacro" />
+  
+    <xacro:arg name='mavlink_addr' default='INADDR_ANY' />
+  <xacro:arg name='mavlink_udp_port' default='14560' />
+  <xacro:arg name='enable_logging' default='false'/>
+  <xacro:arg name='enable_ground_truth' default='false'/>
+  <xacro:arg name='enable_mavlink_interface' default='true'/>
+  <xacro:arg name='log_file' default='false'/>
+  <xacro:arg name='wait_to_record_bag' default='false'/>
+  <xacro:arg name='mav_name' default='beta'/>
+  <xacro:arg name='namespace' default=''/>
+  
+  
+    <xacro:if value="$(arg enable_ground_truth)">
+    <gazebo>
+        <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
+            <frameName>world</frameName>
+            <bodyName>${namespace}/base_link</bodyName>
+            <topicName>/$(arg mav_name)/ground_truth/odometry</topicName>
+            <updateRate>200.0</updateRate>
+        </plugin>
+    </gazebo>
+
+  </xacro:if>
+  
+  <xacro:if value="$(arg enable_mavlink_interface)">
+  <!-- Instantiate mavlink telemetry interface. -->
+  <xacro:mavlink_interface_macro
+    namespace="${namespace}"
+    imu_sub_topic="/imu"
+    mavlink_addr="$(arg mavlink_addr)"
+    mavlink_udp_port="$(arg mavlink_udp_port)"
+    input_offset = "0.0"
+    max_rot_velocity = "${max_rot_velocity}"
+    >
+  </xacro:mavlink_interface_macro>
+  </xacro:if>
+    
+  <!-- Mount an ADIS16448 IMU. -->
+  <xacro:imu_plugin_macro
+    namespace="${namespace}"
+    imu_suffix=""
+    parent_link="${namespace}/base_link"
+    imu_topic="/imu"
+    mass_imu_sensor="0.015"
+    gyroscope_noise_density="0.0003394"
+    gyroscope_random_walk="0.000038785"
+    gyroscope_bias_correlation_time="1000.0"
+    gyroscope_turn_on_bias_sigma="0.0087"
+    accelerometer_noise_density="0.004"
+    accelerometer_random_walk="0.006"
+    accelerometer_bias_correlation_time="300.0"
+    accelerometer_turn_on_bias_sigma="0.1960"
+  >
+    <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:imu_plugin_macro>
+    
+</robot>
+

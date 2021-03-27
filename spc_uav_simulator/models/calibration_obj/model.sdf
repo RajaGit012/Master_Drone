@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+<model name='checkerboard'>
+<!-- avoids getting simulated in dynamic engine:
+<static>true</static> -->
+  <pose>5 0 0.4445 0 0 0</pose>
+  <link name='checkerboard_link'>
+    <gravity>0</gravity>
+
+    <visual name='visual'>
+      <geometry>
+        <box>
+          <size>0.001 1.118 0.889</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>model://calibration_obj/materials/scripts</uri>
+          <uri>model://calibration_obj/materials/textures</uri>
+          <name>calibration_obj/check-108</name>
+        </script>
+      </material>
+    </visual>
+  </link>
+
+</model>
+</sdf>

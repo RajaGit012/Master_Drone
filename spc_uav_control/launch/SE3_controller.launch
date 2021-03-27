@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="vehicle" default="betaX"/>
+    <arg name="uav_type" default="tilt_hexarotor"/>
+    <arg name="use_mavlink_interface" default="false"/>
+    <arg name="use_experiment_interface" default="false"/>
+    <arg name="dist_obs_type" default="1"/>
+    <arg name="odometry_topic" default="/ground_truth/odometry"/>
+    <arg name="dyn_reconfig_load" default="$(find spc_uav_control)/config/dynamic/rotors/SE3_Control_Gains_$(arg vehicle).yaml"/>
+        
+                        	
+    <node pkg="spc_uav_control" type="geometric_SE3_controller_node" name="offboard_controller" output="screen">
+        <rosparam command="load" file="$(find spc_uav_control)/config/static/SE3_Control_Gains_$(arg vehicle).yaml" />
+		<param name="setpoint_frame_id" value="world" />
+		<param name="setpoint_child_frame_id" value="setpoint" />
+		<param name="uav_type" value="$(arg uav_type)" />
+		<param name="use_mavlink_interface" value="$(arg use_mavlink_interface)" />
+		<param name="use_experiment_interface" value="$(arg use_experiment_interface)" />
+		<param name="disturbance_observer_type" value="$(arg dist_obs_type)" />
+		<remap from="/ground_truth/odom" to="$(arg odometry_topic)" />
+	</node>
+    
+    <!--Control Dynamic Parameters -->
+    <node pkg="dynamic_reconfigure" type="dynparam" name="load_controller_parameters" args="load /offboard_controller/motion $(arg dyn_reconfig_load)" />
+
+</launch>
+

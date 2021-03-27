@@ -1,0 +1,8 @@
+J_xx: 0.29052
+J_yy: 0.291195
+J_zz: 0.3367154
+thrust_constant: 1.4813e-5
+arm_length: 0.34
+moment_constant: 0.0216
+gravity_constant: 9.81
+max_rotor_speed: 920

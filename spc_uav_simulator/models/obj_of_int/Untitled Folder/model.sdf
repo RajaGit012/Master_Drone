@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+<model name='obj_of_int'>
+<!-- avoids getting simulated in dynamic engine:
+<static>true</static> -->
+
+  <link name='cylinder_'>
+    <pose>0 0 1.5 0 0 0</pose>
+    <inertial>
+      <mass>10</mass>
+      <inertia>
+        <ixx>0.166667</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.166667</iyy>
+        <iyz>0</iyz>
+        <izz>0.166667</izz>
+      </inertia>
+    </inertial>
+    <collision name='collision'>
+      <geometry>
+        <cylinder>
+          <radius>1</radius>
+          <length>3</length>
+        </cylinder>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.16</mu>
+            <mu2>1.16</mu2>
+            <slip1>0</slip1>
+            <slip2>0</slip2>
+          </ode>
+        </friction>
+      </surface>
+      <!-- <max_contacts>10</max_contacts> -->
+    </collision>
+    <visual name='visual'>
+      <geometry>
+        <cylinder>
+          <radius>1</radius>
+          <length>6</length>
+        </cylinder>
+      </geometry>
+      <material>
+        <script>
+          <uri>model://obj_of_int/materials/scripts</uri>
+          <uri>model://obj_of_int/materials/textures</uri>
+          <name>obj_of_int/old_scratched_metal</name>
+        </script>
+      </material>
+    </visual>
+    <self_collide>0</self_collide>
+    <kinematic>0</kinematic>
+  </link>
+
+  <joint name='ground_link' type='fixed'>
+    <parent>world</parent>
+    <child>cylinder_</child>
+    <pose>0 0 0 0 -0 0</pose>
+  </joint>
+
+</model>
+</sdf>
+

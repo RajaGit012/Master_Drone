@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="spc_uav_visual"  type="cams_plot_re_broadcaster" name="cams_plot_re_broadcaster" output="screen">
+        <param name="estimated_camera_frame_id" type="string" value="estimated_camera_link" />
+        <param name="physical_camera_frame_id" type="string" value="camera_virtual_center_link" />
+        <param name="physical_world_frame_id" type="string" value="world" />
+        <param name="est_cam_topic" type="string" value="est_cam_tf" />
+        <param name="phys_cam_topic" type="string" value="phys_cam_tf" />
+        <param name="msg_buffer_s" type="int" value="500" />
+    </node>
+</launch>

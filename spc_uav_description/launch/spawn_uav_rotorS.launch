@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="vehicle" default="iris"/>
+    
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+    <arg name="R" default="0"/>
+    <arg name="P" default="0"/>
+    <arg name="Y" default="0"/>
+    <arg name="gui" default="true" />
+
+    <arg name="namespace" default=""/>
+    <arg name="model" default="$(find spc_uav_description)/urdf/rotors/$(arg vehicle)_base.urdf.xacro"/>
+
+    <arg name="enable_logging" default="false"/>
+    <arg name="enable_ground_truth" default="true"/>
+    <arg name="log_file" default="$(arg vehicle)"/>
+    <arg name="wait_to_record_bag" default="false"/>
+    <arg name="enable_mavlink_interface" default="false"/>
+    <arg name="rvizconfig" default="$(find spc_uav_description)/config/config_file.rviz" />
+  
+    <!-- send the robot XML to param server -->
+    <param name="robot_description" command="
+        $(find xacro)/xacro --inorder '$(arg model)'
+        enable_logging:=$(arg enable_logging)
+        enable_ground_truth:=$(arg enable_ground_truth)
+        enable_mavlink_interface:=$(arg enable_mavlink_interface)
+        log_file:=$(arg log_file)
+        wait_to_record_bag:=$(arg wait_to_record_bag)
+        mav_name:=$(arg vehicle)
+        namespace:=$(arg namespace)"
+    />
+	
+    <!-- push robot_description to factory and spawn robot in gazebo -->
+    <node name="spawn_uav" pkg="gazebo_ros" type="spawn_model"
+        args="-param robot_description
+         -urdf
+         -x $(arg x)
+         -y $(arg y)
+         -z $(arg z)
+         -R $(arg R) -P $(arg P) -Y $(arg Y)
+         -model $(arg vehicle)"
+        respawn="false" output="screen">
+    </node>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true"/>-->
+
+</launch>

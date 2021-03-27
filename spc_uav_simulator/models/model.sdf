@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+<sdf version ='1.6'>
+  <model name ='box'>
+    <pose>0 0 0 0 0 0</pose>
+    <link name ='link'>
+      <pose>0 0 .5 0 0 0</pose>
+      <collision name ='collision'>
+        <geometry>
+          <box><size>1 1 1</size></box>
+        </geometry>
+      </collision>
+      <visual name ='visual'>
+        <geometry>
+          <box><size>2 2 5</size></box>
+        </geometry>
+<material>
+        <script>
+          <uri>model://obj_of_int/materials/scripts</uri>
+          <uri>model://obj_of_int/materials/textures</uri>
+          <name>obj_of_int/old_scratched_metal</name>
+        </script>
+      </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+
+
+

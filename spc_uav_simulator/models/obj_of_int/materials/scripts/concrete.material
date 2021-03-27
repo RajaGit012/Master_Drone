@@ -1,0 +1,20 @@
+material obj_of_int/concrete
+//tps://opengameart.org/node/8092
+//CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        //has to be place following the folder structure
+        //otherwise relative paths should be also possible
+        texture concrete.jpg
+
+        //scaling to repeat the texture
+        scale 1.0 1.0
+      }
+    }
+  }
+}

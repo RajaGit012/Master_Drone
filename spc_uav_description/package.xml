@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <name>spc_uav_description</name>
+  
+  <version>0.0.0</version>
+  
+  <description>The spc_uav_description package contains urdf files and meshes of the SPECTORS UAVs</description>
+
+  <maintainer email="r.a.m.rashadhashem@utwente.nl">ramy</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>roslaunch</build_depend>
+  <build_depend>urdf</build_depend>
+  <build_depend>xacro</build_depend>
+  
+  <run_depend>urdf</run_depend>
+  <run_depend>xacro</run_depend>
+  <run_depend>joint_state_publisher</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>rviz</run_depend>
+
+  <export>   </export>
+  
+</package>

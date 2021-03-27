@@ -1,0 +1,27 @@
+!!python/object/new:dynamic_reconfigure.encoding.Config
+dictitems:
+  J_xx: 0.025996593
+  J_yy: 0.038269781
+  J_zz: 0.05156455
+  K_R_x: 1.8
+  K_R_y: 1.8
+  K_R_z: 0.7
+  K_p_x: 2.3
+  K_p_y: 2.3
+  K_p_z: 2.3
+  K_v_x: 2.7
+  K_v_y: 2.7
+  K_v_z: 2.7
+  K_w_x: 0.4
+  K_w_x_px4: 0.2
+  K_w_y: 0.4
+  K_w_y_px4: 0.2
+  K_w_z: 0.4
+  K_w_z_px4: 0.3
+  approach_pitch: 10.0
+  cmd_pitchMoment_limit: 3.52
+  cmd_rollMoment_limit: 3.52
+  cmd_thrust_limit: 37.7
+  cmd_yawMoment_limit: 2.48
+  mass: 1.19
+state: []

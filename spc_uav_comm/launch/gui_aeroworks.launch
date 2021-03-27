@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="spc_uav_comm" type="simulation_gui.py" name="simulation_gui" output="screen">
+	    <param name="uav_type" value="hexacopter"/>
+	    <param name="uav_size" value="90"/> 
+	    <param name="flightMap" value="ramlab"/>  
+	    <param name="LocalPosFrameId" value="world"/>
+	    <param name="LocalPosChildFrameId" value="base_link"/>
+	    <param name="SetpointFrameId" value="world"/>
+	    <param name="SetpointChildFrameId" value="setpoint"/>
+	</node>
+	
+	
+</launch>
+

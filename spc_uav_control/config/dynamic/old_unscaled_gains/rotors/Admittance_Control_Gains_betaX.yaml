@@ -1,0 +1,19 @@
+!!python/object/new:dynamic_reconfigure.encoding.Config
+dictitems:
+  c_mass: 0.9
+  c_J_xx: 0.5
+  c_J_yy: 0.5
+  c_J_zz: 0.5
+  c_KD_r_x: 5.0
+  c_KD_r_y: 5.0
+  c_KD_r_z: 5.0
+  c_KD_t_x: 5.0
+  c_KD_t_y: 5.0
+  c_KD_t_z: 5.0
+  c_KP_r_xx: 3.0
+  c_KP_r_yy: 3.0
+  c_KP_r_zz: 3.0
+  c_KP_t_xx: 3.0
+  c_KP_t_yy: 3.0
+  c_KP_t_zz: 3.0
+state: []

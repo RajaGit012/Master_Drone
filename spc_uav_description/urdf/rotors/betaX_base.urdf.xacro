@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<robot name="betaX" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Included URDF Files -->
+  <!--<xacro:include filename="$(find rotors_description)/urdf/component_snippets.xacro" /> included by stereo_cam_mod.xacro-->
+  <xacro:include filename="$(find spc_uav_description)/urdf/stereo_cam_mod.xacro" />
+  <xacro:include filename="$(find rotors_description)/urdf/multirotor_base.xacro" />
+
+  <!-- Instantiate iris "mechanics" -->
+  <xacro:include filename="$(find spc_uav_description)/urdf/betaX.xacro" />
+
+   <!-- Instantiate a controller. -->
+  <xacro:controller_plugin_macro namespace="${namespace}" imu_sub_topic="imu" />
+
+  <xacro:if value="$(arg enable_mavlink_interface)">
+    <!-- Instantiate mavlink telemetry interface. -->
+    <xacro:default_mavlink_interface namespace="${namespace}" imu_sub_topic="imu" rotor_count="4" />
+  </xacro:if>
+
+  <!-- Mount an ADIS16448 IMU. -->
+  <xacro:default_imu namespace="${namespace}" parent_link="${namespace}/base_link" />
+
+  <!-- Mount Cam
+  <xacro:camera_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    camera_suffix="mono"
+    frame_rate="20.0"
+    horizontal_fov="2"
+    image_width="752"
+    image_height="480"
+    image_format="L8"
+    min_distance="0.02"
+    max_distance="50"
+    noise_mean="0.0"
+    noise_stddev="0.007"
+    enable_visual="true">
+
+      <cylinder radius="0.05" length=".02" />
+      <origin xyz="0 0 ${-arm_length/4}" rpy="0 0 0" />
+  </xacro:camera_macro> -->
+
+  <!-- Mount Stereo Cam -->
+  <!-- HFOV = 66 degrees; pitch = VFOV/2 = 24.75 degrees -->
+  <xacro:stereo_camera_macro_mod
+    namespace="${namespace}"
+    camera_name="camera"
+    parent_link="${namespace}/base_link"
+    frame_rate="30.0"
+    horizontal_fov="1.151917306"
+    image_width="1280"
+    image_height="960"
+    image_format="R8G8B8"
+    min_distance="0.02"
+    max_distance="50"
+    noise_mean="0.0"
+    noise_stddev="0.007"
+    enable_visual="true"
+    origin_offset_x="0.0"
+    baseline_y="0.061"
+    origin_offset_z="-0.1"
+    pitch="0.43195">
+
+     <box size="0.05 0.05 0.05" />
+
+  </xacro:stereo_camera_macro_mod>
+
+  <xacro:if value="$(arg enable_ground_truth)">
+    <xacro:ground_truth_imu_and_odometry namespace="${namespace}" parent_link="${namespace}/base_link" />
+  </xacro:if>
+
+  <xacro:if value="$(arg enable_logging)">
+    <!-- Instantiate a logger -->
+    <xacro:bag_plugin_macro
+      namespace="${namespace}"
+      bag_file="$(arg log_file)"
+      rotor_velocity_slowdown_sim="${rotor_velocity_slowdown_sim}"
+      wait_to_record_bag="$(arg wait_to_record_bag)" />
+  </xacro:if>
+
+
+
+</robot>

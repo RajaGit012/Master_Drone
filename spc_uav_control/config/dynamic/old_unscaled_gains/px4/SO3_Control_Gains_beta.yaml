@@ -1,0 +1,22 @@
+!!python/object/new:dynamic_reconfigure.encoding.Config
+dictitems:
+  J_xx: 0.05097
+  J_yy: 0.05027
+  J_zz: 0.09434
+  K_R_x: 2
+  K_R_y: 2
+  K_R_z: 2
+  K_p_x: 3
+  K_p_y: 3
+  K_p_z: 3
+  K_v_x: 2.6
+  K_v_y: 2.6
+  K_v_z: 2.6
+  K_w_x: 0.05
+  K_w_x_px4: 0.03
+  K_w_y: 0.05
+  K_w_y_px4: 0.02
+  K_w_z: 0.1
+  K_w_z_px4: 0.26
+  mass: 1.62
+state: []

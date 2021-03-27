@@ -1,0 +1,14 @@
+J_xx: 0.05097
+J_yy: 0.05027
+J_zz: 0.09434
+thrust_constant: 2.031e-5
+arm_length: 0.34
+moment_constant: 0.0133
+gravity_constant: 9.81
+max_rotor_speed: 920
+max_thrust: 17.19
+x_pos_end_effector: 0.7
+cust_traj_stablzn_threshold: 0.001
+cust_traj_stablzn_iterations: 300
+
+

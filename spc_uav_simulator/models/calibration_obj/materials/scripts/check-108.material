@@ -1,0 +1,18 @@
+material calibration_obj/check-108
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        //has to be place following the folder structure
+        //otherwise relative paths should be also possible
+        texture check-108.png
+
+        //scaling to repeat the texture
+        scale 1.0 1.0
+      }
+    }
+  }
+}

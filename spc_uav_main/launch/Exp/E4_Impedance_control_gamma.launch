@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--***************** Arguments **************-->
+    
+    <!-- UAV's Name -->
+    <arg name="vehicle" default="gamma"/>
+    <!-- UAV's Type -->
+    <arg name="uav_type" default="omni_hexarotor"/>   
+    
+    
+    <!-- ***************** Run MAVROS Node **************-->
+	<include file="$(find mavros)/launch/px4.launch"/>
+
+    <!--***************** Run GUI Node **************-->
+    <include file="$(find spc_uav_comm)/launch/gui_omni_uav.launch">
+        <arg name="uav_type" value="hexacopter" />
+        <arg name="flightMap" value="ramlab"/>
+        <arg name="LocalPosChildFrameId" value="$(arg vehicle)/base_link"/>
+    </include>
+    
+    <!--***************** Run Optitrack Node **************-->    
+	<node pkg="mocap_optitrack" type="mocap_node" name="mocap_node" respawn="false" launch-prefix="" required="true">
+	    <rosparam file="$(find spc_uav_comm)/config/common/mocap.yaml" command="load" />
+  	</node>
+  	
+     <!--***************** Run Multi-Sensor-Fusion Node **************-->       
+	<node name="msf_pixhawk_optitrack_sensor" pkg="msf_updates" type="pose_sensor" clear_params="true" output="screen">
+    	<remap from="msf_core/imu_state_input" to="mavros/imu/data_raw"/>
+		<remap from="msf_updates/pose_input" to="$(arg vehicle)/pose" />
+		<rosparam file="$(find spc_uav_comm)/config/common/msf_parameters_pixhawk_optitrack.yaml"/>
+    </node>
+	
+     <!--***************** RUN SE3 Controller Node for Experiment **************--> 
+     <include file="$(find spc_uav_control)/launch/impedance_controller.launch">
+        <arg name="vehicle" value="$(arg vehicle)" />
+		<arg name="uav_type" value="$(arg uav_type)" />
+        <arg name="use_mavlink_interface" value="true" />
+        <arg name="use_experiment_interface" value="true" />
+        <arg name="dist_obs_type" value="1" />
+        <arg name="odometry_topic" value="/msf_core/odometry" />
+        <arg name="dyn_reconfig_load" value="$(find spc_uav_control)/config/dynamic/exp/Impedance_Control_Gains_$(arg vehicle).yaml" />
+    </include>
+    
+	<!--***************** Initialize the MSF **************-->
+	<node pkg="rosservice" type="rosservice" name="initialize" args="call --wait /msf_pixhawk_optitrack_sensor/pose_sensor/initialize_msf_scale 1"/>  
+	
+	<!--***************** Load RQT_Plugins **************-->  
+    <node pkg="rqt_topic" type="rqt_topic" name="rqt_topic"/>
+
+</launch>
+

@@ -1,0 +1,12 @@
+#goal definition
+bool start
+int32 atype
+float32 depth
+float32 radius
+float32 speed
+---
+#result definition
+bool finished
+---
+#feedback
+bool started

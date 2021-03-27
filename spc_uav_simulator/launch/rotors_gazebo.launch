@@ -1,0 +1,49 @@
+<launch>
+
+    <!-- Posix SITL environment launch script -->
+    <arg name="x" default="-3"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+    <arg name="R" default="0"/>
+    <arg name="P" default="0"/>
+    <arg name="Y" default="0.0"/>
+    <arg name="vehicle" default="iris"/>
+    <arg name="world" default="$(find spc_uav_simulator)/worlds/empty.world"/>
+
+    <arg name="headless" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="ns" default="/"/>
+
+    <arg name="debug" default="false"/>
+    <arg name="verbose" default="false"/>
+    <arg name="paused" default="false"/>
+    <arg name="rvizconfig" default="$(find spc_uav_simulator)/config/config_file.rviz" />
+
+    
+    <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find rotors_gazebo)/models:$(find spc_uav_simulator)/models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find rotors_gazebo)/models"/>
+    
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="headless" value="$(arg headless)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="world_name" value="$(arg world)" />
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="verbose" value="$(arg verbose)" />
+        <arg name="paused" value="$(arg paused)" />
+    </include>
+
+    <include file="$(find spc_uav_description)/launch/spawn_uav_rotorS.launch">
+        <arg name="vehicle" value="$(arg vehicle)"/>
+        <arg name="x" value="$(arg x)"/>
+        <arg name="y" value="$(arg y)"/>
+        <arg name="z" value="$(arg z)"/>
+        <arg name="R" value="$(arg R)"/>
+        <arg name="P" value="$(arg P)"/>
+        <arg name="Y" value="$(arg Y)"/>
+        <arg name="rvizconfig" value="$(arg rvizconfig)"/>
+    </include>
+        
+    
+</launch>
+
+<!-- vim: set et ft=xml fenc=utf-8 ff=unix sts=0 sw=4 ts=4 : -->

@@ -1,0 +1,21 @@
+material obj_of_int/old_scratched_metal
+//http://texturelib.com/texture/?path=/Textures/metal/bare/metal_bare_0044
+//free for any use in products
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        //has to be place following the folder structure
+        //otherwise relative paths should be also possible
+        texture old_scratched_metal.jpg
+        
+        //scaling to repeat the texture
+        scale 1.0 1.0
+      }
+    }
+  }
+}
+

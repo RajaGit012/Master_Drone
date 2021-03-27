@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--***************** Arguments **************-->
+    
+    <!-- UAV's Name -->
+    <arg name="vehicle" default="alpha"/>
+    <!-- Gazebo World FileName -->
+    <arg name="world" default="$(find spc_uav_simulator)/worlds/wall.world"/>
+    
+    <!--***************** Run GUI Node **************-->
+    <include file="$(find spc_uav_comm)/launch/gui_omni_uav.launch">
+        <arg name="uav_type" value="quadcopter" />
+        <arg name="flightMap" value="ramlab"/>
+    </include>
+    
+    <!--***************** RUN SE3 Controller Node for rotorS simulation **************-->
+    <include file="$(find spc_uav_control)/launch/SO3_controller.launch">
+        <arg name="vehicle" value="$(arg vehicle)" />
+		<arg name="uav_type" value="quadrotor" />
+        <arg name="use_mavlink_interface" value="false" />
+        <arg name="use_experiment_interface" value="false" />
+        <arg name="odometry_topic" value="/ground_truth/odometry" />
+        <arg name="dyn_reconfig_load" value="$(find spc_uav_control)/config/dynamic/rotors/SO3_Control_Gains_$(arg vehicle).yaml" />
+    </include>
+     
+    <!--***************** RUN rotorS Simulation **************-->    
+    <include file="$(find spc_uav_simulator)/launch/rotors_gazebo.launch">
+        <arg name="vehicle" value="$(arg vehicle)" />
+        <arg name="world" value="$(arg world)" />
+    </include>
+    
+</launch>
+

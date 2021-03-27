@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="failure_reward" default="-200"/>
+    <arg name="end_effector_pos" default="0.7"/>
+    <arg name="LocalPosChildFrameId" default="base_link"/>   
+    
+    <node pkg="spc_uav_comm" type="learning.py" name="learning_interface" output="screen">
+	    <param name="failure_reward" value="$(arg failure_reward)"/>
+	    <param name="end_effector_pos" value="$(arg end_effector_pos)"/>
+	    <param name="LocalPosFrameId" value="world"/>
+	    <param name="LocalPosChildFrameId" value="$(arg LocalPosChildFrameId)"/>
+	</node>
+	
+	
+</launch>
+

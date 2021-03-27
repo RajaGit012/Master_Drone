@@ -1,0 +1,4 @@
+<launch> <!-- DO NOT CHANGE node name as it is hardcoded to this in the omni gui -->
+    <node pkg="spc_uav_visual"  type="Inspection" name="Inspection" output="screen">
+</node>
+</launch>

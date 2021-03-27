@@ -1,0 +1,16 @@
+<launch> <!-- DO NOT CHANGE node name as it is hardcoded to this in the omni gui -->
+    <node pkg="spc_uav_visual"  type="helix" name="helix" output="screen">
+        <param name="fly_helix" type="bool" value="false" />
+        <param name="w_des" type="double" value="2.0" />
+        <param name="n_rot_des" type="int" value="10" />
+        <param name="radius" type="double" value="3.0" />
+        <param name="h_diff" type="double" value="1.5" />
+        <param name="t_init" type="double" value="5.0" />
+        <param name="t_helix" type="double" value="80.0" />
+        <param name="init_x" type="double" value="2.0" />
+        <param name="init_z" type="double" value="0.7" />
+        <param name="helix_z" type="double" value="5.0" />
+        <param name="fly_seg_insp" type="bool" value="true" />
+        <param name="v_z_insp" type="double" value="0.5" />
+    </node>
+</launch>

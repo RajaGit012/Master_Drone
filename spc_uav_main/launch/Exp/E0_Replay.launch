@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="vehicle" default="betaX"/>
+
+    <node pkg="rviz" type="rviz" name="rqt_rviz"/>
+
+    <node pkg="tf" type="tf_remap" name="tf_remapper" output="screen">
+    <rosparam param="mappings">
+    [{old: betaX/base_link, new: base_link}]
+    </rosparam>
+    </node>
+
+    <include file="$(find spc_uav_description)/launch/spawn_uav.launch">
+        <arg name="vehicle" value="$(arg vehicle)"/>
+    </include>
+	
+</launch>
+

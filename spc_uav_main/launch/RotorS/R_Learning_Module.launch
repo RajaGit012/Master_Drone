@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--***************** Arguments **************-->
+    
+
+    <!--***************** Run GUI Node **************-->
+    <include file="$(find spc_uav_comm)/launch/learning_module.launch">
+        <arg name="failure_reward" value="-150" />
+        <arg name="end_effector_pos" value="0.7"/>
+    </include>
+    
+</launch>
+
